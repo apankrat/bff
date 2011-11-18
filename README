@@ -1,9 +1,9 @@
 bff 1.0.4
 =========
 
-	Moderately-optimizing Brainfi*ck language interpreter
+	Moderately-optimizing brainfuck interpreter
 
-	http://swapped.cc/bf
+	http://swapped.cc/bff
 
 =
 	To build with GNU tools run
