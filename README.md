@@ -1,0 +1,43 @@
+    bff 1.0.4
+    =========
+    
+    	Moderately-optimizing brainfuck interpreter
+    
+    	http://swapped.cc/bff
+    
+    =
+    	To build with GNU tools run
+    		make
+    
+    	To install in /usr/bin (not sure why you'd be wanting this though)
+    		make install
+    
+    	To clean up the build files
+    		make clean
+    
+    =
+    	1.0.4   - Aug 1, 2011
+    		fixed xalloc() to zero newly allocated blocks
+    
+    	1.0.3.1 - Aug 2, 2004
+    		fixed a bug where programs starting with < or > command
+    		were not handled properly
+    	
+    	1.0.3 - Jul 29, 2004
+    		further optimized the main loop, now runs twice as fast
+    		
+    	1.0.2 - Apr 27, 2004
+    		made it compilable under MSVC
+    		added -Wall to Makefile
+    		added missing string.h include
+    		
+    	1.0.1 - Apr 27, 2004
+    		the cell array is now dynamically grown when exhausted;
+    		the input may be read from the file
+    
+    	1.0.0 - Apr 26, 2004
+    		an initial public release
+    
+    ==========================================================================
+    Copyright (c) 2004-11, Alex Pankratov (ap@swapped.cc). All rights reserved.
+    
