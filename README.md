@@ -16,24 +16,24 @@
     		make clean
     
     =
-    	1.0.5   - Dec 10, 2012
-		fixed grow() as per Mitch Schwartz note
+    	1.0.5 - Dec 10, 2012
+    		fixed grow() as per Mitch Schwartz note
 
-    	1.0.4   - Aug 1, 2011
+    	1.0.4 - Aug 1, 2011
     		fixed xalloc() to zero newly allocated blocks
     
     	1.0.3.1 - Aug 2, 2004
     		fixed a bug where programs starting with < or > command
     		were not handled properly
-    	
+   
     	1.0.3 - Jul 29, 2004
     		further optimized the main loop, now runs twice as fast
-    		
+   
     	1.0.2 - Apr 27, 2004
     		made it compilable under MSVC
     		added -Wall to Makefile
     		added missing string.h include
-    		
+  
     	1.0.1 - Apr 27, 2004
     		the cell array is now dynamically grown when exhausted;
     		the input may be read from the file
