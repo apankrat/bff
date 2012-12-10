@@ -1,7 +1,7 @@
 /*
  *	Copyright (c) 2004 Alex Pankratov. All rights reserved.
  *
- *	Slightly-optimizing (tm) Brainfuck interpreter, 1.0.4
+ *	Slightly-optimizing (tm) Brainfuck interpreter, 1.0.5
  *	http://swapped.cc/bf
  */
 
@@ -58,11 +58,10 @@ int main(int argc, char ** argv)
 	     (argc > 3) )
 		usage();
 
-	/* open program file */
+	/* open and read the program file */
 	if (argc > 1 && ! (fh = fopen(argv[1], "r")))
 		die("cannot open program file (%s)\n", argv[1]);
 
-	/* read proggy */
 	n = 0;
 	p = 0;
 	while (! feof(fh))
@@ -86,7 +85,7 @@ int main(int argc, char ** argv)
 		input = getc;
 	}
 
-	/* strip comments */
+	/* strip the comments */
 	for (i=j=0; i<n; i++)
 		if (strchr("[]<>+-,.", p[i]))
 			p[j++] = p[i];
@@ -253,13 +252,18 @@ void * grow(int * v, int * j, int * jmax)
 		inc = 3 * (pos - n) / 2;
 
 	v = xalloc(v, (n+inc) * sizeof(int));
-	memset(v + n, 0, inc * sizeof(int));
 
 	if (pos < 0)
 	{
 		/* underflow */
 		memmove(v + inc, v, n * sizeof(int));
+		memset(v, 0, inc * sizeof(int));
 		*j += inc;
+	}
+	else
+	{
+		/* overflow */
+		memset(v + n, 0, inc * sizeof(int));
 	}
 
 	*jmax += inc;
@@ -277,8 +281,8 @@ int getc_ext(FILE * fh)
 void usage()
 {
 	fprintf(stderr, 
-		"bff: slightly-opimizing Brainfuck interpreter, 1.0.3.1, "
-		"http://swapped.cc/bf\n"
+		"bff: slightly-opimizing Brainfuck interpreter, 1.0.5, "
+		"http://swapped.cc/bff\n"
 		"Usage: bff [<program file> [<input data file]]\n");
 		
 	exit(-1);
