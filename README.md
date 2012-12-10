@@ -1,4 +1,4 @@
-    bff 1.0.4
+    bff 1.0.5
     =========
     
     	Moderately-optimizing brainfuck interpreter
@@ -16,6 +16,9 @@
     		make clean
     
     =
+    	1.0.5   - Dec 10, 2012
+		fixed grow() as per Mitch Schwartz note
+
     	1.0.4   - Aug 1, 2011
     		fixed xalloc() to zero newly allocated blocks
     
@@ -39,5 +42,5 @@
     		an initial public release
     
     ==========================================================================
-    Copyright (c) 2004-11, Alex Pankratov (ap@swapped.cc). All rights reserved.
+    Copyright (c) 2004-12, Alex Pankratov (ap@swapped.cc). All rights reserved.
     

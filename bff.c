@@ -2,7 +2,7 @@
  *	Copyright (c) 2004 Alex Pankratov. All rights reserved.
  *
  *	Slightly-optimizing (tm) Brainfuck interpreter, 1.0.5
- *	http://swapped.cc/bf
+ *	http://swapped.cc/bff
  */
 
 /*
