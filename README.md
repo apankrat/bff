@@ -17,7 +17,7 @@
 
     =
     	1.0.6 - Apr 27, 2015
-		added special handling for [-] and [+]
+    		added special handling for [-] and [+]
 
     	1.0.5 - Dec 10, 2012
     		fixed grow() as per Mitch Schwartz note
