@@ -1,7 +1,7 @@
 /*
  *	Copyright (c) 2004 Alex Pankratov. All rights reserved.
  *
- *	Slightly-optimizing (tm) Brainfuck interpreter, 1.0.5
+ *	Slightly-optimizing (tm) Brainfuck interpreter, 1.0.6
  *	http://swapped.cc/bff
  */
 
@@ -309,7 +309,7 @@ int getc_ext(FILE * fh)
 void usage()
 {
 	fprintf(stderr, 
-		"bff: slightly-opimizing Brainfuck interpreter, 1.0.5, "
+		"bff: moderately-opimizing Brainfuck interpreter, 1.0.6, "
 		"http://swapped.cc/bff\n"
 		"Usage: bff [<program file> [<input data file]]\n");
 		
