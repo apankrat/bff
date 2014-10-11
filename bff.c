@@ -102,12 +102,10 @@ int main(int argc, char ** argv)
 	memmove(p, p+i, n);
 
 	/* preprocess */
-	x = xalloc(NULL, n * sizeof(*x));
+	x = xalloc(NULL, (n+1) * sizeof(*x));
 
 	for (i=0; i<n; i++)
 	{
-		x[i].op = p[i];
-		
 		switch (p[i])
 		{
 		case '[':
@@ -121,17 +119,19 @@ int main(int argc, char ** argv)
 			if (l)
 				die("no matching ]\n");
 
-			/* [-] and [+] */
-			if (j == i+2 && (p[i+1] == '-' || p[i-1] == '+'))
-			{
-				x[i].op = 'z';
-				x[i].p_off = 3;
-				break;
-			}
-	
 			x[i].op = 'c';
 			x[i].p_ofx = chew(p, j+1, &x[i].v_ofx) - i;
 			x[i].p_off = chew(p, i+1, &x[i].v_off) - i;
+
+			/* [-] and [+] */
+			if (j == i+2 && (p[i+1] == '-' || p[i+1] == '+'))
+			{
+				x[i].op = 'z';
+				x[i].p_off = x[i].p_ofx;
+				x[i].v_off = x[i].v_ofx;
+			}
+
+			i += x[i].p_off - 1;
 			break;
 
 		case ']':
@@ -148,21 +148,34 @@ int main(int argc, char ** argv)
 			x[i].op = 'c';
 			x[i].p_off = chew(p, j+1, &x[i].v_off) - i;
 			x[i].p_ofx = chew(p, i+1, &x[i].v_ofx) - i;
+
+			i += x[i].p_ofx - 1;
 			break;
 		
-		case '<':
-		case '>':
-			/* ignore */
-			break;
-		
-		default:
-			/* + - . , */
+		case '+':
+		case '-':
+		case '.':
+		case ',':
+			x[i].op = p[i];
+
 			for (j=i; j<n && p[j]==x[i].op; j++);
 			x[i].op_arg = j-i;
 			x[i].p_off = chew(p, j, &x[i].v_off) - i;
+
+			i += x[i].p_off - 1;
+			break;
+
+		case '<':
+		case '>':
+			/* chew() folds these into all other ops */
+		default:
+			assert(0);
 			break;
 		}
 	}
+
+	/* exit */
+	x[i].op = 'x';
 
 	/* allocate cell array - start with the moderate size */
 	jmax = 256;
@@ -196,9 +209,6 @@ int main(int argc, char ** argv)
 		case '-':
 			v[j] -= z->op_arg;
 			break;
-		case 'z':
-			v[j] = 0;
-			break;
 		case 'c': 
 			if (! v[j])
 			{
@@ -209,15 +219,22 @@ int main(int argc, char ** argv)
 			break;
 		case '.':
 			for (k=0; k<z->op_arg; k++)
+/*				printf("%02x", v[j]); */
 				putchar(v[j]);
+
 			break;
 		case ',':
 			for (k=0; k<z->op_arg; k++)
 				v[j] = input(fh);
 			break;
-		default: 
-			/* 0, ie eop */
+		case 'z':
+			v[j] = 0;
+			break;
+		case 'x':
 			goto _break;
+
+		default: 
+			assert(0);
 		}
 
 		z += z->p_off;
