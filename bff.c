@@ -120,6 +120,14 @@ int main(int argc, char ** argv)
 						break;
 			if (l)
 				die("no matching ]\n");
+
+			/* [-] and [+] */
+			if (j == i+2 && (p[i+1] == '-' || p[i-1] == '+'))
+			{
+				x[i].op = 'z';
+				x[i].p_off = 3;
+				break;
+			}
 	
 			x[i].op = 'c';
 			x[i].p_ofx = chew(p, j+1, &x[i].v_ofx) - i;
@@ -187,6 +195,9 @@ int main(int argc, char ** argv)
 			break;			
 		case '-':
 			v[j] -= z->op_arg;
+			break;
+		case 'z':
+			v[j] = 0;
 			break;
 		case 'c': 
 			if (! v[j])
