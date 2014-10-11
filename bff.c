@@ -233,7 +233,7 @@ int main(int argc, char ** argv)
 		case 'x':
 			goto _break;
 
-		default: 
+		default:
 			assert(0);
 		}
 
@@ -325,5 +325,4 @@ void die(const char * msg, ...)
 	va_end(m);
 	exit(-1);
 }
-
 
