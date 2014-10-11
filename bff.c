@@ -216,7 +216,7 @@ _break:
 }
 
 /*
- *	miscellania
+ *	miscellanea
  */
 int chew(char * p, int j, int * v_off)
 {
