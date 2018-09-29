@@ -1,7 +1,7 @@
 /*
  *	Copyright (c) 2004 Alex Pankratov. All rights reserved.
  *
- *	Slightly-optimizing (tm) Brainfuck interpreter, 1.0.6
+ *	Moderately-optimizing (tm) Brainfuck interpreter, 1.0.7
  *	http://swapped.cc/bff
  */
 
@@ -100,6 +100,7 @@ int main(int argc, char ** argv)
 	
 	n -= i;
 	memmove(p, p+i, n);
+	p[n] = 0;
 
 	/* preprocess */
 	x = xalloc(NULL, (n+1) * sizeof(*x));
@@ -309,7 +310,7 @@ int getc_ext(FILE * fh)
 void usage()
 {
 	fprintf(stderr, 
-		"bff: moderately-opimizing Brainfuck interpreter, 1.0.6, "
+		"bff: moderately-opimizing Brainfuck interpreter, 1.0.7, "
 		"http://swapped.cc/bff\n"
 		"Usage: bff [<program file> [<input data file]]\n");
 		
