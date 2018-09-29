@@ -1,4 +1,4 @@
-    bff 1.0.6
+    bff 1.0.7
     =========
 
     	Moderately-optimizing brainfuck interpreter
@@ -16,16 +16,23 @@
     		make clean
 
     =
+    	1.0.7 - Aug 09, 2018
+    		fixed an issue in preprocessing stage that caused it 
+    		to ingest more bf code than there was if the bf code
+    		started with <<... or >>... sequence. This lead to a
+    		heap corruption with variable consequences. kudos to
+    		Alex Stefanov for reporting this.
+
     	1.0.6 - Apr 27, 2015
     		added special handling for [-] and [+]
 
     	1.0.5 - Dec 10, 2012
     		fixed grow() as per Mitch Schwartz note
 
-    	1.0.4 - Aug 1, 2011
+    	1.0.4 - Aug 01, 2011
     		fixed xalloc() to zero newly allocated blocks
 
-    	1.0.3.1 - Aug 2, 2004
+    	1.0.3.1 - Aug 02, 2004
     		fixed a bug where programs starting with < or > command
     		were not handled properly
 
